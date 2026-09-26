@@ -38,3 +38,24 @@ header h1 {
     background-color: #FFF8E1;
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+thead {
+    background-color: #ffe082;
+}
+
+input, textarea, select {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    padding: 8px;
+    margin-bottom: 12px;
+}
