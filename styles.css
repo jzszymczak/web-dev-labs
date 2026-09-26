@@ -1,9 +1,40 @@
+/* 
+    Name: Jakub Szymczak
+    Lab: 5
+ */
+
 body {
     font-family: MOnospace, courier;
     color: #ffa000;
     max-width: 40px auto;
+    box-sizing: border-box;
 }
 
-h1 {
+header {
+    padding: 24px;
+    background-color: #ffa000;
+    color: #4E342E;
+    margin-bottom: 24px;
+}
+
+header h1 {
     color: #4E342E;
 }
+
+#main-nav {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    background-color: #ffa000;
+}
+
+#main-nav a {
+    color: #4E342E;
+    text-decoration: none;
+    padding: 12px; 
+}
+
+#main-nav a:hover {
+    background-color: #FFF8E1;
+}
+
