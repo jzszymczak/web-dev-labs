@@ -78,3 +78,23 @@ input, textarea, select {
     border-radius: 4px;
     z-index: 5;
 }
+
+@media (max-width: 600px) {
+    #main-nav {
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 900px) {
+    form {
+        width: 50vw;
+    }
+
+    table {
+        width: 80vw;
+    }
+}
