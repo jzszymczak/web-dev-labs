@@ -98,3 +98,10 @@ input, textarea, select {
         width: 80vw;
     }
 }
+
+body.dark {
+    background-color: #111827;
+    color: #f1f5f9;
+}
+
+
