@@ -1,6 +1,6 @@
 /* 
   Name: Jakub Szymczak
-  Lab: 9
+  Lab: 10
 */
 const name = "Ada";
 
@@ -15,6 +15,10 @@ console.log(`${name} has completed ${labsCompleted} labs.`);
 const likeBtn = document.querySelector("#like-btn");
 const likeCount = document.querySelector("#like-count");
 const likeMessage = document.querySelector("#like-message");
+
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+}
 
 /*
 let likes = 0;
@@ -36,23 +40,19 @@ if (likeBtn) {
 */
 
 const LikeCounter = {
-    likes: 0, 
+    likes: Number(localStorage.getItem("likes")) || 0,
     increment() {
         this.likes = this.likes + 1;
+        localStorage.setItem("likes", this.likes);
         this.render();
     },
+
     render() {
         likeCount.textContent = `${this.likes} likes`;
-
-        if (this.likes >= 10) {
-            likeMessage.textContent = "Wow, thanks for all the likes!";
-        } else if (this.likes >= 5) {
-            likeMessage.textContent = "Glad you like it!";
-        } else {
-            likeMessage.textContent = "";
-        }
     }
 };
+
+LikeCounter.render()
 
 likeBtn.addEventListener("click", function() {
     LikeCounter.increment();
@@ -60,9 +60,12 @@ likeBtn.addEventListener("click", function() {
 
 themeBtn = document.querySelector("#theme-btn");
 
-themeBtn.addEventListener("click", () => {
+themeBtn.addEventListener("click", function() {
     document.body.classList.toggle("dark");
+    const isDark = document.body.classList.contains("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
 });
+
 
 const goals = [
     "Mastery of flexbox in CSS",
@@ -134,3 +137,22 @@ async function loadFact() {
 }
 
 factBtn.addEventListener("click", loadFact);
+
+const locationBtn = document.querySelector("#location-btn");
+const locationDisplay = document.querySelector("#location-display");
+
+locationBtn.addEventListener("click", function() {
+    if (!("geolocation" in navigator)) {
+        locationDisplay.textContent = "Geolocation isn't supported.";
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude.toFixed(2);
+        const lon = position.coords.longitude.toFixed(2);
+        locationDisplay.textContent = `You're near ${lat}, ${lon}`;
+    }, function(error) {
+        locationDisplay.textContent = "Location access was denied.";
+        console.warn(error);
+    });
+});
